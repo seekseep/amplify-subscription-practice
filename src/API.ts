@@ -95,6 +95,43 @@ export type DeleteTodoInput = {
   id: string,
 };
 
+export type CreateFileInput = {
+  id?: string | null,
+  group: string,
+  name: string,
+  description?: string | null,
+};
+
+export type ModelFileConditionInput = {
+  group?: ModelIDInput | null,
+  name?: ModelStringInput | null,
+  description?: ModelStringInput | null,
+  and?: Array< ModelFileConditionInput | null > | null,
+  or?: Array< ModelFileConditionInput | null > | null,
+  not?: ModelFileConditionInput | null,
+};
+
+export type File = {
+  __typename: "File",
+  id: string,
+  group: string,
+  name: string,
+  description?: string | null,
+  createdAt: string,
+  updatedAt: string,
+};
+
+export type UpdateFileInput = {
+  id: string,
+  group?: string | null,
+  name?: string | null,
+  description?: string | null,
+};
+
+export type DeleteFileInput = {
+  id: string,
+};
+
 export type ModelTodoFilterInput = {
   id?: ModelIDInput | null,
   group?: ModelIDInput | null,
@@ -108,6 +145,22 @@ export type ModelTodoFilterInput = {
 export type ModelTodoConnection = {
   __typename: "ModelTodoConnection",
   items:  Array<Todo | null >,
+  nextToken?: string | null,
+};
+
+export type ModelFileFilterInput = {
+  id?: ModelIDInput | null,
+  group?: ModelIDInput | null,
+  name?: ModelStringInput | null,
+  description?: ModelStringInput | null,
+  and?: Array< ModelFileFilterInput | null > | null,
+  or?: Array< ModelFileFilterInput | null > | null,
+  not?: ModelFileFilterInput | null,
+};
+
+export type ModelFileConnection = {
+  __typename: "ModelFileConnection",
+  items:  Array<File | null >,
   nextToken?: string | null,
 };
 
@@ -153,6 +206,15 @@ export type ModelSubscriptionStringInput = {
   beginsWith?: string | null,
   in?: Array< string | null > | null,
   notIn?: Array< string | null > | null,
+};
+
+export type ModelSubscriptionFileFilterInput = {
+  id?: ModelSubscriptionIDInput | null,
+  group?: ModelSubscriptionIDInput | null,
+  name?: ModelSubscriptionStringInput | null,
+  description?: ModelSubscriptionStringInput | null,
+  and?: Array< ModelSubscriptionFileFilterInput | null > | null,
+  or?: Array< ModelSubscriptionFileFilterInput | null > | null,
 };
 
 export type CreateTodoMutationVariables = {
@@ -206,6 +268,57 @@ export type DeleteTodoMutation = {
   } | null,
 };
 
+export type CreateFileMutationVariables = {
+  input: CreateFileInput,
+  condition?: ModelFileConditionInput | null,
+};
+
+export type CreateFileMutation = {
+  createFile?:  {
+    __typename: "File",
+    id: string,
+    group: string,
+    name: string,
+    description?: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type UpdateFileMutationVariables = {
+  input: UpdateFileInput,
+  condition?: ModelFileConditionInput | null,
+};
+
+export type UpdateFileMutation = {
+  updateFile?:  {
+    __typename: "File",
+    id: string,
+    group: string,
+    name: string,
+    description?: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type DeleteFileMutationVariables = {
+  input: DeleteFileInput,
+  condition?: ModelFileConditionInput | null,
+};
+
+export type DeleteFileMutation = {
+  deleteFile?:  {
+    __typename: "File",
+    id: string,
+    group: string,
+    name: string,
+    description?: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
 export type GetTodoQueryVariables = {
   id: string,
 };
@@ -244,6 +357,44 @@ export type ListTodosQuery = {
   } | null,
 };
 
+export type GetFileQueryVariables = {
+  id: string,
+};
+
+export type GetFileQuery = {
+  getFile?:  {
+    __typename: "File",
+    id: string,
+    group: string,
+    name: string,
+    description?: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type ListFilesQueryVariables = {
+  filter?: ModelFileFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListFilesQuery = {
+  listFiles?:  {
+    __typename: "ModelFileConnection",
+    items:  Array< {
+      __typename: "File",
+      id: string,
+      group: string,
+      name: string,
+      description?: string | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
+};
+
 export type ListTodosByGroupQueryVariables = {
   group: string,
   sortDirection?: ModelSortDirection | null,
@@ -257,6 +408,30 @@ export type ListTodosByGroupQuery = {
     __typename: "ModelTodoConnection",
     items:  Array< {
       __typename: "Todo",
+      id: string,
+      group: string,
+      name: string,
+      description?: string | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
+};
+
+export type ListFilesByGroupQueryVariables = {
+  group: string,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelFileFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListFilesByGroupQuery = {
+  listFilesByGroup?:  {
+    __typename: "ModelFileConnection",
+    items:  Array< {
+      __typename: "File",
       id: string,
       group: string,
       name: string,
@@ -307,6 +482,54 @@ export type OnDeleteTodoSubscriptionVariables = {
 export type OnDeleteTodoSubscription = {
   onDeleteTodo?:  {
     __typename: "Todo",
+    id: string,
+    group: string,
+    name: string,
+    description?: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnCreateFileSubscriptionVariables = {
+  filter?: ModelSubscriptionFileFilterInput | null,
+};
+
+export type OnCreateFileSubscription = {
+  onCreateFile?:  {
+    __typename: "File",
+    id: string,
+    group: string,
+    name: string,
+    description?: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdateFileSubscriptionVariables = {
+  filter?: ModelSubscriptionFileFilterInput | null,
+};
+
+export type OnUpdateFileSubscription = {
+  onUpdateFile?:  {
+    __typename: "File",
+    id: string,
+    group: string,
+    name: string,
+    description?: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeleteFileSubscriptionVariables = {
+  filter?: ModelSubscriptionFileFilterInput | null,
+};
+
+export type OnDeleteFileSubscription = {
+  onDeleteFile?:  {
+    __typename: "File",
     id: string,
     group: string,
     name: string,

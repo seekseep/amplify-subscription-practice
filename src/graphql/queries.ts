@@ -40,6 +40,38 @@ export const listTodos = /* GraphQL */ `query ListTodos(
   }
 }
 ` as GeneratedQuery<APITypes.ListTodosQueryVariables, APITypes.ListTodosQuery>;
+export const getFile = /* GraphQL */ `query GetFile($id: ID!) {
+  getFile(id: $id) {
+    id
+    group
+    name
+    description
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedQuery<APITypes.GetFileQueryVariables, APITypes.GetFileQuery>;
+export const listFiles = /* GraphQL */ `query ListFiles(
+  $filter: ModelFileFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listFiles(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      group
+      name
+      description
+      createdAt
+      updatedAt
+      __typename
+    }
+    nextToken
+    __typename
+  }
+}
+` as GeneratedQuery<APITypes.ListFilesQueryVariables, APITypes.ListFilesQuery>;
 export const listTodosByGroup = /* GraphQL */ `query ListTodosByGroup(
   $group: ID!
   $sortDirection: ModelSortDirection
@@ -70,4 +102,35 @@ export const listTodosByGroup = /* GraphQL */ `query ListTodosByGroup(
 ` as GeneratedQuery<
   APITypes.ListTodosByGroupQueryVariables,
   APITypes.ListTodosByGroupQuery
+>;
+export const listFilesByGroup = /* GraphQL */ `query ListFilesByGroup(
+  $group: ID!
+  $sortDirection: ModelSortDirection
+  $filter: ModelFileFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listFilesByGroup(
+    group: $group
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      group
+      name
+      description
+      createdAt
+      updatedAt
+      __typename
+    }
+    nextToken
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.ListFilesByGroupQueryVariables,
+  APITypes.ListFilesByGroupQuery
 >;

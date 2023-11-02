@@ -62,3 +62,57 @@ export const deleteTodo = /* GraphQL */ `mutation DeleteTodo(
   APITypes.DeleteTodoMutationVariables,
   APITypes.DeleteTodoMutation
 >;
+export const createFile = /* GraphQL */ `mutation CreateFile(
+  $input: CreateFileInput!
+  $condition: ModelFileConditionInput
+) {
+  createFile(input: $input, condition: $condition) {
+    id
+    group
+    name
+    description
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.CreateFileMutationVariables,
+  APITypes.CreateFileMutation
+>;
+export const updateFile = /* GraphQL */ `mutation UpdateFile(
+  $input: UpdateFileInput!
+  $condition: ModelFileConditionInput
+) {
+  updateFile(input: $input, condition: $condition) {
+    id
+    group
+    name
+    description
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.UpdateFileMutationVariables,
+  APITypes.UpdateFileMutation
+>;
+export const deleteFile = /* GraphQL */ `mutation DeleteFile(
+  $input: DeleteFileInput!
+  $condition: ModelFileConditionInput
+) {
+  deleteFile(input: $input, condition: $condition) {
+    id
+    group
+    name
+    description
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.DeleteFileMutationVariables,
+  APITypes.DeleteFileMutation
+>;

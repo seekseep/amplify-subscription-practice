@@ -53,3 +53,48 @@ export const onDeleteTodo = /* GraphQL */ `subscription OnDeleteTodo($filter: Mo
   APITypes.OnDeleteTodoSubscriptionVariables,
   APITypes.OnDeleteTodoSubscription
 >;
+export const onCreateFile = /* GraphQL */ `subscription OnCreateFile($filter: ModelSubscriptionFileFilterInput) {
+  onCreateFile(filter: $filter) {
+    id
+    group
+    name
+    description
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnCreateFileSubscriptionVariables,
+  APITypes.OnCreateFileSubscription
+>;
+export const onUpdateFile = /* GraphQL */ `subscription OnUpdateFile($filter: ModelSubscriptionFileFilterInput) {
+  onUpdateFile(filter: $filter) {
+    id
+    group
+    name
+    description
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnUpdateFileSubscriptionVariables,
+  APITypes.OnUpdateFileSubscription
+>;
+export const onDeleteFile = /* GraphQL */ `subscription OnDeleteFile($filter: ModelSubscriptionFileFilterInput) {
+  onDeleteFile(filter: $filter) {
+    id
+    group
+    name
+    description
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnDeleteFileSubscriptionVariables,
+  APITypes.OnDeleteFileSubscription
+>;

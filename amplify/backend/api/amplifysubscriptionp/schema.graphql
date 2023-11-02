@@ -13,3 +13,12 @@ type Todo @model @auth(rules: [
   name: String!
   description: String
 }
+
+type File @model @auth(rules: [
+  { allow: private, groups:["admin"] }
+]) {
+  id: ID!
+  group: ID! @index(name: "byGroup", queryField: "listFilesByGroup")
+  name: String!
+  description: String
+}
