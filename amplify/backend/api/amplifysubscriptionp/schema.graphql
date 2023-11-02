@@ -1,0 +1,15 @@
+type Todo @model @auth(rules: [
+  { allow: groups, groups:["admin"] },
+  {
+    allow: groups,
+    provider: userPools,
+    groupClaim: "groups_as_special",
+    groupsField: "group",
+    operations: [read]
+  },
+]) {
+  id: ID!
+  group: ID! @index(name: "byGroup", queryField: "listTodosByGroup")
+  name: String!
+  description: String
+}
