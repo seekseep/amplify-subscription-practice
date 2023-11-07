@@ -1,13 +1,13 @@
 {
   "api": {
-    "amplifysubscriptionp": {
+    "AmpSubPraApi": {
       "dependsOn": [
         {
           "attributes": [
             "UserPoolId"
           ],
           "category": "auth",
-          "resourceName": "amplifysubscriptionpa74492fb"
+          "resourceName": "AmpSubPraAuth"
         }
       ],
       "output": {
@@ -16,7 +16,7 @@
           "defaultAuthentication": {
             "authenticationType": "AMAZON_COGNITO_USER_POOLS",
             "userPoolConfig": {
-              "userPoolId": "authamplifysubscriptionpa74492fb"
+              "userPoolId": "authAmpSubPraAuth"
             }
           }
         }
@@ -26,7 +26,7 @@
     }
   },
   "auth": {
-    "amplifysubscriptionpa74492fb": {
+    "AmpSubPraAuth": {
       "customAuth": false,
       "dependsOn": [],
       "frontendAuthConfig": {
@@ -51,6 +51,31 @@
       },
       "providerPlugin": "awscloudformation",
       "service": "Cognito"
+    }
+  },
+  "function": {
+    "AmpSubPraAuthPreTokenGeneration": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_AmpSubPraAuthPreTokenGeneration_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "AmpSubPraAuthPreTokenGeneration"
+        }
+      ]
+    },
+    "AMPLIFY_function_AmpSubPraAuthPreTokenGeneration_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "AmpSubPraAuthPreTokenGeneration"
+        }
+      ]
     }
   }
 }

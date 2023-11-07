@@ -1,0 +1,33 @@
+{
+  "trigger": true,
+  "modules": [
+    "alter-claims"
+  ],
+  "parentResource": "AmpSubPraAuth",
+  "functionName": "AmpSubPraAuthPreTokenGeneration",
+  "resourceName": "AmpSubPraAuthPreTokenGeneration",
+  "parentStack": "auth",
+  "triggerEnvs": "[]",
+  "triggerDir": "/snapshot/amplify-cli/build/node_modules/@aws-amplify/amplify-category-auth/provider-utils/awscloudformation/triggers/PreTokenGeneration",
+  "triggerTemplate": "PreTokenGeneration.json.ejs",
+  "triggerEventPath": "PreTokenGeneration.event.json",
+  "roleName": "AmpSubPraAuthPreTokenGeneration",
+  "skipEdit": true,
+  "authTriggerConnections": "[\n  {\n    \"triggerType\": \"PreTokenGeneration\",\n    \"lambdaFunctionName\": \"AmpSubPraAuthPreTokenGeneration\"\n  }\n]",
+  "dependsOn": [
+    {
+      "category": "function",
+      "resourceName": "AmpSubPraAuthPreTokenGeneration",
+      "triggerProvider": "Cognito",
+      "attributes": [
+        "Arn",
+        "Name"
+      ]
+    }
+  ],
+  "triggers": {
+    "PreTokenGeneration": [
+      "alter-claims"
+    ]
+  }
+}

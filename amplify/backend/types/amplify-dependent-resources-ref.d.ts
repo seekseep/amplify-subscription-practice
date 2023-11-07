@@ -1,19 +1,26 @@
 export type AmplifyDependentResourcesAttributes = {
   "api": {
-    "amplifysubscriptionp": {
+    "AmpSubPraApi": {
       "GraphQLAPIEndpointOutput": "string",
       "GraphQLAPIIdOutput": "string"
     }
   },
   "auth": {
-    "amplifysubscriptionpa74492fb": {
+    "AmpSubPraAuth": {
       "AppClientID": "string",
       "AppClientIDWeb": "string",
-      "IdentityPoolId": "string",
-      "IdentityPoolName": "string",
       "UserPoolArn": "string",
       "UserPoolId": "string",
       "UserPoolName": "string"
+    }
+  },
+  "function": {
+    "AmpSubPraAuthPreTokenGeneration": {
+      "Arn": "string",
+      "LambdaExecutionRole": "string",
+      "LambdaExecutionRoleArn": "string",
+      "Name": "string",
+      "Region": "string"
     }
   }
 }

@@ -1,0 +1,63 @@
+input ModelSubscriptionIDInput {
+	ne: ID
+	eq: ID
+	le: ID
+	lt: ID
+	ge: ID
+	gt: ID
+	contains: ID
+	notContains: ID
+	between: [ID]
+	beginsWith: ID
+	in: [ID]
+	notIn: [ID]
+}
+
+input ModelSubscriptionStringInput {
+	ne: String
+	eq: String
+	le: String
+	lt: String
+	ge: String
+	gt: String
+	contains: String
+	notContains: String
+	between: [String]
+	beginsWith: String
+	in: [String]
+	notIn: [String]
+}
+
+type Todo @model @auth(rules: [
+  { allow: groups, groups:["admin"] },
+  {
+    allow: groups,
+    provider: userPools,
+    groupClaim: "groups_as_special",
+    groupsField: "group",
+    operations: [read]
+  },
+]) {
+  id: ID!
+  group: ID! @index(name: "byGroup", queryField: "listTodosByGroup")
+  name: String!
+  description: String
+}
+
+type File @model @auth(rules: [
+  { allow: private, groups:["admin"] }
+]) {
+  id: ID!
+  group: ID! @index(name: "byGroup", queryField: "listFilesByGroup")
+  name: String!
+  description: String
+}
+
+input ModelSubscriptionTodoFilterInput {
+	id: ModelSubscriptionIDInput
+	group: ModelSubscriptionIDInput
+	name: ModelSubscriptionStringInput
+	description: ModelSubscriptionStringInput
+	and: [ModelSubscriptionTodoFilterInput]
+	or: [ModelSubscriptionTodoFilterInput]
+}
